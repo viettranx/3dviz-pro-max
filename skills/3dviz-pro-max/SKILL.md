@@ -30,6 +30,9 @@ apply only the steps affected by the change. User constraints override suggested
 4. **Choose construction per object.** Use the routing table below. Search for the missing decision
    when useful; do not force a subject into the closest lexical match. Recipes, numerical defaults
    and look profiles are candidates to adapt, not instructions to copy every value.
+   At important joins, decide whether the object needs a continuous skin, a layered covering or
+   separate articulated parts. Use [surface continuity](references/object-craft.md#choose-continuity-at-the-join)
+   when attached volumes look accidental; mesh merging is not a universal cleanup prescription.
    ```sh
    python3 scripts/search.py "<subject and unresolved decision>"
    python3 scripts/resolve.py <record-id>
@@ -55,6 +58,9 @@ apply only the steps affected by the change. User constraints override suggested
    Author custom geometry, shaders, materials, textures, lighting and interactions as needed. Use
    Blender for suitable modeling, sculpting, rigging, UV or baking work; use Three.js for suitable
    procedural geometry, interactive state and rendering. Choose their handoff deliberately.
+   For a distinctive finish, develop [palette and material direction](references/object-craft.md#develop-a-material-direction)
+   from useful references: translate them into part assignments, surface scale and light response.
+   Material refinement can strengthen a good form; keep evaluating shape and attachments separately.
    When adding or changing directional, practical, day/night or rescaled lighting, read
    [lighting direction and scale](references/lighting-direction-and-scale.md) before implementing the
    rig. Identify emitter/receiver ownership and final world scale; choose the artistic treatment freely.

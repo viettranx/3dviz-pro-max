@@ -29,3 +29,8 @@ Where scientific encoding is used, record units, scale, coordinate conventions a
 ## Detail and material direction
 
 For important object families, include silhouette/proportions, connected subparts, surface/material choices, articulation and the intended close viewing distance. Use [object craft](object-craft.md) to turn a broad style name into specific modeling decisions. Object count, polygon count and shader complexity are not substitutes for craftsmanship. Scientific detailing must preserve sourced structures. Keep these choices flexible and proportional to the task.
+
+Where joins or finish carry the design, state which regions form one continuous skin and which remain
+layered or articulated. Connect material references to actual part assignments, palette relationships,
+texture scale/direction and light response. Record only decisions that help build or review the object;
+do not turn this into a mandatory surface inventory or require an A/B study for ordinary work.

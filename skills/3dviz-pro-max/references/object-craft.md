@@ -14,6 +14,37 @@ Think at three scales:
 
 Model silhouette-changing details as geometry. Shading detail can support smaller features; it cannot repair a missing outline, joint, cavity or opening.
 
+## Choose continuity at the join
+
+When a model looks assembled from unrelated lumps, inspect the intended relationship at the weak
+join. A body's shoulder may need one flowing skin; feathers need overlapping layers; a bearing and
+shaft need distinct surfaces and clearance. Choose by the object and its motion, not by a blanket
+preference for one mesh. Separate meshes can be deliberate, and a single mesh can still contain
+intersecting shells.
+
+| Observed weakness | Useful intervention | Preserve while refining |
+| --- | --- | --- |
+| Accidental seams or bulges across one intended skin | Author shared surface sections, bridge suitable boundaries, or selectively union/remesh volumes | Silhouette, volume, landmarks and deformation needs |
+| Duplicate or redundant internal geometry | Remove faces confirmed unnecessary for the intended views and behavior | Cavities, cutaways, backs revealed by motion, shadow and transmission needs |
+| Disconnected-looking feather, tile or armor layers | Refine roots, overlap order, thickness and spacing | Meaningful layering rather than fusing the covering into a blob |
+| Pinching or faceted highlights | Inspect normals, winding, local curvature and topology before adding polygons | Intended creases and material boundaries |
+
+Choose the smallest construction change that addresses the visible defect. Blender modeling,
+sculpting or selective remeshing and Three.js custom surfaces or suitable geometry operations are
+all options. An implicit reconstruction can soften detail or change the silhouette; inspect those
+tradeoffs before accepting it. A closed result does not establish good deformation topology.
+
+Three.js `mergeGeometries` combines compatible buffers; `mergeVertices` merges sufficiently similar
+vertex attributes. Neither performs a solid Boolean union or automatically removes interior faces.
+Preserve intended UV and normal seams when welding. See the official
+[BufferGeometryUtils documentation](https://threejs.org/docs/pages/module-BufferGeometryUtils.html)
+(read 2026-09-10; verify the installed version when implementing).
+
+Use neutral material and oblique/close views when they help distinguish shape defects from shading.
+Check affected joins at relevant motion extremes. Boundary-edge and duplicate-face diagnostics can
+guide cleanup, but cannot certify the absence of self-intersections or judge artistic quality.
+These are conditional repair choices, not required manifoldness, polygon-count or fusion gates.
+
 ## Give materials distinct behavior
 
 Choose a small material family for the object and a reason for each assignment. Specify base appearance, roughness, metallic response where appropriate, transparency/transmission if useful, and the scale/direction of surface features. Inspect those choices under the actual lighting, including close views. Do not make every surface the same glossy plastic with a different color.
@@ -28,6 +59,30 @@ Choose a small material family for the object and a reason for each assignment. 
 | Mathematical/logic object | Crisp boundaries, consistent axes, purposeful transparency, readable labels and state-dependent emphasis | Decorative effects obscure the invariant or imply unsupported physical properties |
 
 For Three.js, its [standard material documentation](https://threejs.org/docs/pages/MeshStandardMaterial.html) describes the metallic/roughness workflow and distinguishes normal-map shading from displacement geometry. The [physical material documentation](https://threejs.org/docs/pages/MeshPhysicalMaterial.html) describes transmission, clearcoat, sheen and their additional rendering cost. Choose effects for the required appearance; using a PBR material alone does not establish physical accuracy. Documentation read 2026-09-07; verify APIs against the project's installed version before implementation.
+
+## Develop a material direction
+
+For a custom finish that still feels generic, research references that resolve the missing choice:
+material close-ups, collection objects, art direction or a supplied palette. Extract useful color
+relationships, finish contrast, grain direction and feature scale instead of merely collecting
+texture files. Use supplied references first when sufficient; a small recolor need not become a
+research project. Established scientific claims still follow [research and truth](research-and-truth.md).
+
+Translate the reference into assignments on the actual object: dominant and accent regions, which
+parts are soft or coated, where roughness changes, and how texture follows the construction.
+For example, a pale body, darker layered covering and restrained metal accents can clarify different
+parts; this is one option, not a required palette. Preserve data legends and scientific color meanings.
+
+Choose authored procedural detail, painted/baked maps or sourced textures by fit. Match feature
+scale and direction to the surface and intended camera distance; uniform noise does not establish
+fur, wood or feathers. Verify mapping after geometry changes. Keep asset rights and provenance when
+using external files, and distinguish authored color/roughness choices from measured material values.
+
+Inspect material separation under the final lighting. If the contribution is unclear, hold geometry,
+camera, exposure and pose fixed while comparing surface treatments; use neutral material separately
+to inspect construction. An A/B comparison is optional, not a deliverable every scene owes. Accept
+improvements supported by the visible result and user feedback without treating palette, mesh closure
+or shader complexity as proof that every part is finished.
 
 ## Make articulation belong to the object
 

@@ -4,6 +4,7 @@
 
 # Local working evidence and generated packages
 /.local/
+/examples/.experiments/
 /.cache/
 /.pnpm-store/
 **/.wrangler/
