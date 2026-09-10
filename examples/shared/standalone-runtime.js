@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {createCameraRig} from './camera-orbit-follow.js';
 import {createStudioRig} from './lighting-studio.js';
 import {createRenderLoop} from './render-loop.js';
-import {applyPlate} from './page-chrome.js';
+import {applyEmbed,applyPlate} from './page-chrome.js';
 import {installViewer} from './viewer-contract.js';
 import {NIGHT_VIEWS,createNightLighting} from './breadth/src/night-lighting.js';
 
@@ -48,7 +48,7 @@ function gradientSky(zenith='#0d0f12',horizon='#1c2026'){
 }
 
 export async function mountScene({meta,createScene,kind='study',look='craft',nightName=null,views=null}){
- applyPlate(document,location.search);
+ applyPlate(document,location.search);applyEmbed(document,location.search);
  window.__sceneReady=false;const canvas=$('#world'),viewport=$('#viewport');let renderer;
  try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:kind==='study'});}catch(error){$('#loading').hidden=true;$('#error').hidden=false;throw error;}
  renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.setPixelRatio(Math.min(devicePixelRatio,kind==='study'?1.5:2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.localClippingEnabled=true;renderer.toneMapping=THREE.ACESFilmicToneMapping;

@@ -2,6 +2,8 @@
 // mounted only while the modal is open — an anatomy study pulls a 169 MB mesh set, so it must never
 // load behind the gallery — and a loading line stands in until the frame reports back. Escape, the
 // backdrop and the close button all close; the gallery returns focus to the pill that opened it.
+// On a phone the dialog fills the viewport so the study is not trapped in a 16:9 letterbox, and
+// the iframe asks for `?embed=1` so the study does not draw a second title over the model.
 import { useEffect, useRef, useState } from 'react';
 import type { Example } from '../types/generated-data';
 
@@ -11,14 +13,21 @@ export interface StudyModalProps {
   onClose: () => void;
 }
 
+/** Study pages are served under `/examples/<id>/`; keep that path and add the embed flag. */
+export function embedSrc(href: string): string {
+  const url = new URL(href, 'https://3dviz.dev');
+  url.searchParams.set('embed', '1');
+  return `${url.pathname}${url.search}`;
+}
+
 /** Keyed by study id, so a new study starts with its own loading state. */
 function StudyFrame({ study }: { study: Example }) {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="relative aspect-video max-h-[calc(92vh-84px)] w-full overflow-hidden rounded-b-[26px] bg-ink">
+    <div className="relative aspect-video max-h-[calc(92vh-84px)] w-full overflow-hidden rounded-b-[26px] bg-ink max-md:aspect-auto max-md:max-h-none max-md:min-h-0 max-md:flex-1 max-md:rounded-none">
       <iframe
-        src={study.href}
+        src={embedSrc(study.href)}
         title={`${study.title} — runnable study`}
         onLoad={() => setLoaded(true)}
         className="h-full w-full border-0"
@@ -26,9 +35,9 @@ function StudyFrame({ study }: { study: Example }) {
       {loaded ? null : (
         <p
           role="status"
-          className="pointer-events-none absolute inset-0 m-0 grid place-items-center font-mono text-[11px] tracking-[1.4px] text-dark-mute"
+          className="pointer-events-none absolute inset-0 m-0 flex items-center justify-center font-mono text-[11px] tracking-wide whitespace-nowrap text-dark-mute"
         >
-          LOADING {study.id.toUpperCase()} …
+          Loading…
         </p>
       )}
     </div>
@@ -60,11 +69,11 @@ export default function StudyModal({ study, onClose }: StudyModalProps) {
       onClick={(event) => {
         if (event.target === dialog.current) dialog.current?.close();
       }}
-      className="m-auto w-[min(96vw,1400px)] max-w-none border-0 bg-transparent p-0 backdrop:bg-ink/60"
+      className="m-auto w-[min(96vw,1400px)] max-w-none border-0 bg-transparent p-0 backdrop:bg-ink/60 max-md:fixed max-md:inset-0 max-md:m-0 max-md:h-dvh max-md:max-h-dvh max-md:w-full"
     >
       {study ? (
-        <div className="overflow-hidden rounded-[26px] bg-white shadow-[0_24px_60px_#1c2a2352]">
-          <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5">
+        <div className="overflow-hidden rounded-[26px] bg-white shadow-[0_24px_60px_#1c2a2352] max-md:flex max-md:h-full max-md:flex-col max-md:rounded-none">
+          <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5 max-md:flex-nowrap max-md:gap-2 max-md:px-3 max-md:py-2.5">
             <div className="flex min-w-0 items-baseline gap-2.5">
               <h2
                 id="study-modal-title"
@@ -74,12 +83,12 @@ export default function StudyModal({ study, onClose }: StudyModalProps) {
               </h2>
               <span className="flex-none font-mono text-[10.5px] text-mono-dim">{study.id}</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-2">
               <a
                 href={study.href}
                 target="_blank"
                 rel="noopener"
-                className="rounded-full border border-line-strong px-4 py-2 font-mono text-[11px] tracking-[0.6px] text-green hover:bg-wash"
+                className="whitespace-nowrap rounded-full border border-line-strong px-4 py-2 font-mono text-[11px] tracking-[0.6px] text-green hover:bg-wash max-md:px-3"
               >
                 Open in new tab ↗
               </a>

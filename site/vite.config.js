@@ -12,6 +12,17 @@ export default defineConfig({
     dedupe: ['three'],
     alias: { '@examples': fileURLToPath(new URL('../examples/shared', import.meta.url)) },
   },
-  server: { fs: { allow: ['..'] }, host: '127.0.0.1', port: 4173 },
+  server: {
+    fs: { allow: ['..'] },
+    host: '127.0.0.1',
+    port: 4173,
+    // `pnpm --dir examples dev` (port 4180) so Show 3D iframes resolve under vite dev.
+    proxy: {
+      '/examples': {
+        target: 'http://127.0.0.1:4180',
+        rewrite: (p) => p.replace(/^\/examples/, '') || '/',
+      },
+    },
+  },
   build: { target: 'es2022' },
 });
