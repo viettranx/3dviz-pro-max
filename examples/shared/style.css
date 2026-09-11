@@ -19,20 +19,22 @@ html[data-plate="1"] .heading,html[data-plate="1"] .toolbar,html[data-plate="1"]
 #loading{display:flex;align-items:center;justify-content:center;padding:16px;background:#0c151a;letter-spacing:.04em;white-space:nowrap;text-align:center}#loading[hidden]{display:none}
 
 /* Hosted in the landing modal (`?embed=1`): the dialog already shows the title, so the in-frame
-   heading, readouts and hint would only cover the model. Toolbar and notes stay. */
-html[data-embed="1"] .heading,html[data-embed="1"] #readouts,html[data-embed="1"] .hint{display:none}
+   heading and hint would only cover the model. Toolbar, readouts and notes stay; on a phone the
+   readout chips go too, since there the modal has no room beside the toolbar. */
+html[data-embed="1"] .heading,html[data-embed="1"] .hint{display:none}
 @media(max-width:720px){
  html[data-embed="1"] .toolbar{top:12px;right:12px;left:auto;bottom:auto}
+ html[data-embed="1"] #readouts{display:none}
 }
 
-/* Full-page phone: keep a small title, park the view buttons above the notes bar, and drop the
-   readout chips that sat on the model. Short viewports (landscape, leftover letterbox) hide the
-   title entirely so the canvas stays readable. */
+/* Full-page phone: keep a small title, park the view buttons above the notes bar and the readout
+   chips above the buttons, so no chrome sits on the model. Short viewports (landscape, leftover
+   letterbox) hide the title and readouts entirely so the canvas stays readable. */
 @media(max-width:720px){
  .heading{top:12px;left:12px;width:min(210px,calc(100vw - 24px))}
  .heading h1{font-size:22px;max-width:none;margin:4px 0 0;line-height:1.15}
  .toolbar{left:12px;right:12px;bottom:56px;justify-content:flex-end}
- #readouts{display:none}
+ #readouts{bottom:110px}
 }
 @media(max-height:520px){
  .heading,#readouts,.hint{display:none}

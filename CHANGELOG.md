@@ -4,7 +4,7 @@ Changes are recorded here before a versioned release. There is no published rele
 
 ## Unreleased
 
-- **Phone Show 3D modal.** Replaced the study loading line (`Preparing the study…` → `Loading…`) and stopped it wrapping glyph-by-glyph in a short iframe. On small screens the dialog fills the viewport instead of a 16:9 letterbox; the iframe loads with `?embed=1` so the in-frame title, readouts and hint do not cover the model (toolbar and notes stay). Full-page phone studies keep a smaller title and drop the readout chips.
+- **Phone Show 3D modal.** Replaced the study loading line (`Preparing the study…` → `Loading…`) and stopped it wrapping glyph-by-glyph in a short iframe. On small screens the dialog fills the viewport instead of a 16:9 letterbox; the iframe loads with `?embed=1` so the in-frame title, readouts and hint do not cover the model (toolbar and notes stay). Full-page phone studies keep a smaller title and stack readout chips, view buttons and the notes bar at the bottom edge; the desktop modal keeps its readouts.
 
 - Added advisory model-construction and deformation reasoning: distinguish blockout, structural detail and surface finish; revisit rig ownership after geometry edits; diagnose solver, skin and attachment behavior separately; inspect failing motion intervals and reconsider repeated local patches. Updated two existing knowledge records with evidence and retrieval terms. No new quality gate, numeric rig defaults or runtime-certification claim.
 
