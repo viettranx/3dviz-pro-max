@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "knowledge.skin-weight-and-deformation-inspection",
-  "revision": 2,
+  "revision": 1,
   "status": "active",
   "record_kind": "mixed",
   "knowledge_kind": "inspection-pattern",
@@ -40,22 +40,13 @@
     "inverse bind matrix",
     "bind pose",
     "weight heatmap",
-    "pose fixture",
-    "regional ownership",
-    "tail influence on thigh",
-    "chin follows leg",
-    "claw digit seating",
-    "gait phase interval",
-    "rig after geometry change"
+    "pose fixture"
   ],
   "intent_signals": [
     "elbow collapses after glTF export",
     "find unweighted vertices",
     "compare joint influences at a pinched shoulder",
-    "runtime skin uses wrong bind pose",
-    "skin pinches only near the end of a gait cycle",
-    "claws detach from toes during movement",
-    "new limb geometry still uses old weights"
+    "runtime skin uses wrong bind pose"
   ],
   "example_prompts": [
     "Inspect the vertices causing a shoulder collapse across Blender and the loaded skin.",
@@ -75,35 +66,27 @@
       "Weight values and deformation are related diagnostics. A correct-looking heatmap can still bind to the wrong joint or fail in motion; a bad pose must be traced back to numerical influences and bind context.",
       "Compare the same source revision, skeleton, bind pose and animation sample. Rest-pose agreement alone does not exercise skinning.",
       "Inspect all delivered JOINTS_n and WEIGHTS_n sets that the target runtime actually consumes, and disclose dropped or pruned influences rather than assuming one VEC4 is universal.",
-      "Diagnostic colors are temporary views and may have customized ranges; report numbers and joint identities for selected vertices.",
-      "Assign influence domains by part identity and attachment before constructing coordinate masks. Normalization cannot repair ownership of a chin by a leg or a thigh by a tail. Coordinate proximity alone is insufficient.",
-      "A geometry or proportion change calls for reconsidering weights, bind relationships, attachment seats and correctives. Successful export does not establish that the old rig still fits.",
-      "Separate solver endpoint accuracy, surface deformation, attachment coherence and final appearance. None alone certifies the other three."
+      "Diagnostic colors are temporary views and may have customized ranges; report numbers and joint identities for selected vertices."
     ],
     "implementation": [
       "In Blender, inspect active-group weights, zero or unreferenced vertices, locked groups and normalization state. Select suspect vertices and record their source vertex groups and evaluated mesh revision.",
       "Author a small pose suite around the actual joint: rest, moderate bend, expected extreme, twist and any attachment contact pose. Preserve camera and comparison sample across source and runtime.",
       "After load, identify the SkinnedMesh, skeleton and primitive; expose selected vertex JOINTS_n and WEIGHTS_n values, their resolved joint names or stable IDs, weight sum and whether additional sets are present and supported.",
       "Compare source and runtime silhouettes, volume cues, penetrations and attached landmarks at the same pose. Attribute differences to influence transport, bind transforms, skeleton hierarchy, morph order or renderer support only after inspecting that boundary.",
-      "Reset the skeleton, animation time, selected vertices and temporary diagnostic material to the exact pre-inspection state.",
-      "Watch the complete cycle and inspect the reported failing interval and nearby states at informative angles. Use extrema and transitions to choose additional samples rather than relying only on evenly spaced poses. Respect the permitted inspection tools; headless capture is not required.",
-      "Check that a spatial vertex selection represents the intended region and excludes nearby unrelated parts before interpreting maxima or weight sums. Inspect neighboring protected regions after a local repair.",
-      "When correct joint ownership still collapses the form, consider blend placement, rest shape, deformation topology or a supported corrective method. Repeated patches that shift defects to neighboring regions call for reconsidering the construction, not accumulating global coordinate thresholds."
+      "Reset the skeleton, animation time, selected vertices and temporary diagnostic material to the exact pre-inspection state."
     ],
     "observable_checks": [
       "Use fixtures with an unreferenced vertex, wrong-joint influence, non-unit float weight sum, influence in JOINTS_1/WEIGHTS_1 and a valid rigid attachment; each produces a distinct report.",
       "At rest and at each pose fixture, selected landmark positions and silhouettes are compared between Blender and runtime under the declared transform convention.",
       "Select one vertex in the visible failure and list every consumed joint index, resolved joint identity and weight; a missing additional set is reported rather than silently ignored.",
-      "Leaving inspection restores the original animation owner, bind state, material and selected model state without altering the asset.",
-      "At the failing interval, attached parts remain seated on the deformed supporting surface, while selected regions outside the joint domain retain their intended ownership. Record which intervals and views were actually inspected."
+      "Leaving inspection restores the original animation owner, bind state, material and selected model state without altering the asset."
     ]
   },
   "related_ids": [
     "knowledge.shared-skinned-articulated-rig",
     "knowledge.blender-deformation-animation-handoff",
     "knowledge.deformable-prop-support-cage",
-    "knowledge.inspectable-selection",
-    "knowledge.hero-prop-detail-hierarchy"
+    "knowledge.inspectable-selection"
   ],
   "creative_affordances": [
     "Combine a joint-isolation tree, selected-vertex table and synchronized pose inset.",

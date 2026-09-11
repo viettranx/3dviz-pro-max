@@ -92,6 +92,44 @@ For invented creatures, vary gait, cadence, stride and secondary motion by morph
 
 For established science, research the allowed motion and attachments before animating. A stylized knee is not a generic door hinge; a flow arrow is not evidence of a fluid simulation. Keep illustrative choices explicit and preserve the sourced structural relationships.
 
+## Diagnose deformation at the region that fails
+
+Separate four questions: does the control or solver reach the intended state; does skin preserve
+its intended shape there; do attached parts remain seated; and does the final surface read well?
+Correct IK endpoints and normalized weights answer only part of this. A claw needs an intentional
+root, exposed length and orientation relative to its digit, not merely the same parent node.
+
+When a region pinches, inspect the affected exported vertices and their resolved joint names.
+Define the region using its part identity and meaningful spatial extent: a broad belly selection
+can accidentally include low toe tips. Check the selection visually before trusting its statistics.
+Inspect nearby regions that should remain unaffected as well as the region being repaired.
+
+Choose a remedy from the observed cause:
+
+| Evidence | Construction decision to reconsider |
+| --- | --- |
+| Wrong distant joint influences a region | Part ownership and local influence domain before normalization |
+| Visible crease follows a weight boundary | Continuity and location of the blend relative to the actual joint and muscle mass |
+| Correct joints still squash the form at a bend | Deformation topology, rest shape, joint placement, or a suitable supported corrective/deformation method |
+| Attached nail, trim or plate slides away | Its seat and the underlying surface's actual deformation, not just shared parenting |
+| Detailed texture still reads as clay or noise | Primary form and secondary folds/interfaces; then region-specific surface scale and light response |
+
+Skeletal skinning, corrective morphs and physical soft-tissue simulation serve different purposes.
+Choose what the scene needs and what survives the authoring-to-runtime handoff; do not claim muscle
+physics from an authored deformation. No particular skinning algorithm, topology, tool or numeric
+weight threshold is prescribed here.
+
+Watch a complete motion cycle when the artifact has one, then inspect meaningful extremes,
+transitions and any user-reported interval closely. Sparse evenly spaced poses can miss a short
+failure. Use informative angles, pausing or scrubbing as needed; this is not a fixed frame count or
+an instruction to launch headless automation. After a repair, revisit the failing state and adjacent
+states plus affected neighbors. Report the observed coverage rather than a universal visual pass.
+
+Repeated local fixes that move the defect elsewhere are a cue to re-evaluate the representation:
+regional ownership, topology, rest pose or deformation method may need revision. Prefer that inquiry
+to accumulating coordinate exceptions. Reuse shared diagnostics and export tooling; distinguish a
+repair of one asset from a reusable rule supported by more than that asset's particular dimensions.
+
 ## Review at the scales the viewer can use
 
 Inspect a composed overview and a close view of each important object family, plus a frame during motion. Ask what the viewer can identify, how materials separate, whether joints remain attached, and whether the next useful interaction is visible. Exercise Play, Step, Reset or equivalent actions when the scene teaches a change; a technically working slider can still leave the experience looking inert.

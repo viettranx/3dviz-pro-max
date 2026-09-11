@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "knowledge.hero-prop-detail-hierarchy",
-  "revision": 2,
+  "revision": 1,
   "status": "active",
   "record_kind": "mixed",
   "knowledge_kind": "object-archetype",
@@ -40,18 +40,13 @@
     "projected size",
     "LOD transition",
     "hysteresis",
-    "detail budget",
-    "blockout versus finished form",
-    "secondary anatomy",
-    "material cannot repair shape"
+    "detail budget"
   ],
   "intent_signals": [
     "hero prop still looks generic",
     "too many polygons in tiny details",
     "choose geometry versus normal detail",
-    "LOD pops near camera",
-    "model looks like smooth clay despite detailed skin",
-    "primitive shapes remain visible under texture"
+    "LOD pops near camera"
   ],
   "example_prompts": [
     "Build a hero handheld scanner whose silhouette, grip and controls survive from inspection view to room view.",
@@ -70,22 +65,20 @@
     "principles": [
       "Primary detail establishes mass, proportion and silhouette; secondary detail explains construction and use; tertiary detail affects surface reading at close range. Allocate effort in that order and test at the actual cameras.",
       "Choose representation by consequence. A feature that changes outline, cast shadow, reflection, parallax, part separation, contact or interaction needs a representation that preserves those required consequences at the approved views. Geometry is the direct choice; a supported alpha, signed-distance or procedural representation is valid when its view, shadow, thickness and interaction limits are declared and checked.",
-      "Lower detail levels preserve identity anchors and proportions before ornamental density. A lower level is an authored interpretation, not a decimated accident.",
-      "Treat a blockout as a hypothesis rather than a finished hero. Neutral-material inspection can expose missing secondary construction before microdetail consumes the effort; deliberate minimal or rounded styles remain valid."
+      "Lower detail levels preserve identity anchors and proportions before ornamental density. A lower level is an authored interpretation, not a decimated accident."
     ],
     "implementation": [
       "Declare inspection, interaction and context cameras with nearest distance, field of view and output size. Capture the prop's projected bounds and identify the few silhouette landmarks and functional parts that distinguish it.",
-      "Block primary masses and negative spaces first. Add secondary interfaces\u2014grip, hinge, panel break, lens, vent or fastener group\u2014only where they clarify handling or assembly. Reserve tertiary scratches, knurling and tiny labels for shading/decal layers unless the inspection camera resolves their geometry.",
+      "Block primary masses and negative spaces first. Add secondary interfaces—grip, hinge, panel break, lens, vent or fastener group—only where they clarify handling or assembly. Reserve tertiary scratches, knurling and tiny labels for shading/decal layers unless the inspection camera resolves their geometry.",
       "Use the linked evaluated-mesh and bevel contracts for the delivery meshes. Keep separate Blender source collections for primary structure, secondary construction and tertiary surface work so detail can be revised without destroying the base.",
       "Author distance variants from the same named pivot and bounding envelope. Preserve application keys and interactive subparts across variants; remove hidden loops and tertiary geometry before deleting identity-bearing secondary forms.",
       "In Three.js, add authored objects to LOD at measured transition distances and set hysteresis where boundary flicker is visible. If field of view or camera behavior changes projected size independently of distance, test that camera mode explicitly and let application logic adjust level choice when distance-only switching is insufficient. If selection or interaction persists, keep one stable semantic owner and swap only its render representation.",
-      "Review silhouette masks, a neutral clay render and final material at every approved camera. Compare transition frames while moving both toward and away from the object.",
-      "For an organic hero, reason about major masses, joint landmarks, folds and seated appendages at the intended views. Assign skin or covering detail by region and function instead of applying one noise field as a substitute for structure. Revisit deformation and attachments when reshaping the object."
+      "Review silhouette masks, a neutral clay render and final material at every approved camera. Compare transition frames while moving both toward and away from the object."
     ],
     "observable_checks": [
       "A flat silhouette at inspection and context cameras retains the declared primary landmarks and negative spaces.",
       "A neutral material view still explains grip, openings, interfaces and part boundaries; removing tertiary textures does not erase the object's construction.",
-      "Every tertiary feature kept as geometry has a resolved direct or indirect consequence at an approved state\u2014such as silhouette, shadow, reflection, parallax, contact or interaction. Features moved to shading, alpha or procedural representation preserve every consequence the scene claims; features with no required resolved consequence are candidates for removal.",
+      "Every tertiary feature kept as geometry has a resolved direct or indirect consequence at an approved state—such as silhouette, shadow, reflection, parallax, contact or interaction. Features moved to shading, alpha or procedural representation preserve every consequence the scene claims; features with no required resolved consequence are candidates for removal.",
       "Crossing each LOD boundary in both directions produces no identity change, pivot shift, selection loss or repeated flicker within the hysteresis band."
     ]
   },
@@ -94,8 +87,7 @@
     "knowledge.blender-evaluated-mesh-handoff",
     "knowledge.hard-surface-bevel-normal-contract",
     "knowledge.blender-three-tangent-normal-handoff",
-    "knowledge.shared-gltf-asset-bridge",
-    "knowledge.skin-weight-and-deformation-inspection"
+    "knowledge.shared-gltf-asset-bridge"
   ],
   "creative_affordances": [
     "Concentrate tertiary wear on touch points and exposed edges to reinforce use rather than covering every surface.",

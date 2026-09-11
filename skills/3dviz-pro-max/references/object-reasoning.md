@@ -33,6 +33,29 @@ minimum-thickness rule, fixed view count or pass/fail gate.
 
 Detail should explain identity or use. Put roof thickness and beam connections ahead of another ring of identical decorative spheres. Preserve stylistic exaggeration when it strengthens readability; research real anatomy or engineering claims separately.
 
+## Plan the form and its changes together
+
+For a demanding object, establish a compact working model: identity-bearing masses, secondary
+structures, surface regions, attachments and the states that stress them. This can stay in the
+agent's working context; it is not a required document or a fixed construction sequence. Let the
+chosen style determine how literal or exaggerated those features should be.
+
+Treat a blockout as a hypothesis about the form. Before spending heavily on texture, consider
+whether joints, openings, thickness, digits or mating surfaces remain intelligible with a neutral
+material. A deliberate rounded sculpture can be finished; accidental primitive-like anatomy is a
+reason to revisit construction. More polygons, a Blender export or a tier label do not resolve it.
+
+For moving objects, identify which part owns each region and what may blend across its boundary:
+head and jaw, torso and limb, digit and claw, flexible seal and housing. Coordinate masks can help
+implement those choices, but proximity on one global axis does not establish ownership. Nearby
+unrelated parts may occupy the same coordinate range. Reconsider weights, bind relationships,
+correctives and attachment seating when geometry or proportions change; do not assume the previous
+rig remains appropriate merely because export succeeds.
+
+Retrieve `knowledge.hero-prop-detail-hierarchy` for form versus surface decisions and
+`knowledge.skin-weight-and-deformation-inspection` when moving regions collapse or detach. These
+are complementary to numerical motion validation, not substitutes for it.
+
 ## Choose reuse by fit
 
 First decide what must be true of the object, then choose how to build it. A finished kit is useful

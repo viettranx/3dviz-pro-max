@@ -92,7 +92,10 @@ apply only the steps affected by the change. User constraints override suggested
    and [interaction/frame inspection](templates/checklists/inspection-per-frame.md) as conditional
    prompts. Correct factual errors, broken controls and misleading relationships, then improve the
    most consequential visual weakness. A failed shape may require a different construction method,
-   not more texture or a higher kit tier. Continue useful refinement; reassess an approach that keeps
+   not more texture or a higher kit tier. For pinching, detached attachments or repeated pose fixes,
+   use [regional deformation diagnosis](references/object-craft.md#diagnose-deformation-at-the-region-that-fails):
+   solver accuracy, surface deformation and visual quality need separate evidence. Revisit ownership
+   and rig assumptions after changing geometry. Continue useful refinement; reassess an approach that keeps
    failing rather than applying a fixed number of cosmetic passes.
 10. **Report honestly.** Separate what was built, observed, numerically checked and still limited.
     Build success and collection completion do not establish artistic approval or subject clarity.

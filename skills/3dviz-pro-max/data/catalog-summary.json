@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "version": "0.1.0",
-  "catalog_hash": "5936ee34e63d5fe47a25ce7893f1cea260ecfb37b0fb7633b9a222c3de1b4845",
-  "content_catalog_hash": "a53001b0b02f373285ca13b24f26c77b9edfbe9c9169f75b43799d4e03c4964d",
+  "catalog_hash": "7c6f93cea112e5bfd08833b2a0e9bf7b79a95529bc45c48c9e4ddcfa6aeb2675",
+  "content_catalog_hash": "60e76adbc049cff75ad726655402f4ccd93c5f2ffefc895527a5ee8cdca04bac",
   "layout_hash": "e5569ab433183e128bce7d9572170948586e6827eb928c982a2488290541e5b3",
   "hash_scope": "all-records",
   "recipes": 223,
