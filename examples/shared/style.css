@@ -12,3 +12,29 @@
    removed, so a capture can still click #pause; #loading and #error stay visible so a failed
    scene is still visible in a capture. */
 html[data-plate="1"] .heading,html[data-plate="1"] .toolbar,html[data-plate="1"] .panel,html[data-plate="1"] #readouts,html[data-plate="1"] .hint{display:none}
+
+/* Loading copy is a single line: grid + letter-spacing was wrapping each glyph onto the next
+   line inside a short iframe (the landing-page modal on a phone). Opaque fill so the title
+   behind it cannot show through. */
+#loading{display:flex;align-items:center;justify-content:center;padding:16px;background:#0c151a;letter-spacing:.04em;white-space:nowrap;text-align:center}#loading[hidden]{display:none}
+
+/* Hosted in the landing modal (`?embed=1`): the dialog already shows the title, so the in-frame
+   heading, readouts and hint would only cover the model. Toolbar and notes stay. */
+html[data-embed="1"] .heading,html[data-embed="1"] #readouts,html[data-embed="1"] .hint{display:none}
+@media(max-width:720px){
+ html[data-embed="1"] .toolbar{top:12px;right:12px;left:auto;bottom:auto}
+}
+
+/* Full-page phone: keep a small title, park the view buttons above the notes bar, and drop the
+   readout chips that sat on the model. Short viewports (landscape, leftover letterbox) hide the
+   title entirely so the canvas stays readable. */
+@media(max-width:720px){
+ .heading{top:12px;left:12px;width:min(210px,calc(100vw - 24px))}
+ .heading h1{font-size:22px;max-width:none;margin:4px 0 0;line-height:1.15}
+ .toolbar{left:12px;right:12px;bottom:56px;justify-content:flex-end}
+ #readouts{display:none}
+}
+@media(max-height:520px){
+ .heading,#readouts,.hint{display:none}
+ .toolbar{top:8px;right:8px;left:auto;bottom:auto}
+}

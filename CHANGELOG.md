@@ -4,6 +4,8 @@ Changes are recorded here before a versioned release. There is no published rele
 
 ## Unreleased
 
+- **Phone Show 3D modal.** Replaced the study loading line (`Preparing the study…` → `Loading…`) and stopped it wrapping glyph-by-glyph in a short iframe. On small screens the dialog fills the viewport instead of a 16:9 letterbox; the iframe loads with `?embed=1` so the in-frame title, readouts and hint do not cover the model (toolbar and notes stay). Full-page phone studies keep a smaller title and drop the readout chips.
+
 - Added advisory model-construction and deformation reasoning: distinguish blockout, structural detail and surface finish; revisit rig ownership after geometry edits; diagnose solver, skin and attachment behavior separately; inspect failing motion intervals and reconsider repeated local patches. Updated two existing knowledge records with evidence and retrieval terms. No new quality gate, numeric rig defaults or runtime-certification claim.
 
 - Added conditional surface-continuity and material-direction guidance (2026-09-10): choose continuous skin, layered coverings or articulated parts by the object; target redundant geometry without erasing useful interiors; distinguish buffer merging from solid union. Material references now lead to part assignments, palette relationships and surface scale. Workflow links expose these choices without mandatory fusion, manifoldness or A/B gates. No dataset records or general runtime-quality claims are added.
